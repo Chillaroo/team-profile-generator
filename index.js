@@ -120,17 +120,17 @@ function generateDiv(newTeam) {
         employeeEmail = newTeam[i].email;
 
         if (newTeam[i].hasOwnProperty('officeNumber')) {
-            employeePosition = "Manager"
+            employeePosition = `<i class="fas fa-mug-hot" style="color:white"></i> Manager`
             specialCategoryKey = "Office Number";
             specialCategoryValue = newTeam[i].officeNumber;
         }
         if (newTeam[i].hasOwnProperty('github')) {
-            employeePosition = "Engineer"
+            employeePosition = `<i class="fas fa-glasses" style="color:white"></i> Engineer`
             specialCategoryKey = "Github";
             specialCategoryValue = `<a href="https://github.com/${newTeam[i].github}" target="blank">https://github.com/${newTeam[i].github}</a>`;
         }
         if (newTeam[i].hasOwnProperty('school')) {
-            employeePosition = "Intern"
+            employeePosition = `<i class="fas fa-graduation-cap" style="color:white"></i> Intern`
             specialCategoryKey = "School";
             specialCategoryValue = newTeam[i].school;
         }
