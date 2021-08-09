@@ -100,8 +100,8 @@ async function setUserInput(res) {
             newEmployee = "none";
         }
     }
-    let divArray = generateDiv(newTeam);
-    console.log(divArray);
+    let divString = generateDiv(newTeam);
+    insertDivs(divString);
 };
 
 function generateDiv(newTeam) {
@@ -114,20 +114,20 @@ function generateDiv(newTeam) {
     let specialCategoryValue = " ";
 
     for (var i = 0; i < newTeam.length; i++) {
-
+        //REFACTOR using methods
         employeeName = newTeam[i].name;
         employeeId = newTeam[i].id;
         employeeEmail = newTeam[i].email;
 
         if (newTeam[i].hasOwnProperty('officeNumber')) {
             employeePosition = "Manager"
-            specialCategoryKey = "Office Number:";
+            specialCategoryKey = "Office Number";
             specialCategoryValue = newTeam[i].officeNumber;
         }
         if (newTeam[i].hasOwnProperty('github')) {
             employeePosition = "Engineer"
             specialCategoryKey = "Github";
-            specialCategoryValue = `https://github.com/${newTeam[i].github}`;
+            specialCategoryValue = `<a href="https://github.com/${newTeam[i].github}" target="blank">https://github.com/${newTeam[i].github}</a>`;
         }
         if (newTeam[i].hasOwnProperty('school')) {
             employeePosition = "Intern"
@@ -142,7 +142,7 @@ function generateDiv(newTeam) {
             </div>
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">Employee ID: ${employeeId}</li>
-                <li class="list-group-item">Employee Email: ${employeeEmail}</li>
+                <li class="list-group-item">Employee Email: <a href="mailto:${employeeEmail}" target="_blank">${employeeEmail}</a></li>
                 <li class="list-group-item">${specialCategoryKey}: ${specialCategoryValue}</li>
             </ul>
         </div>
@@ -150,5 +150,12 @@ function generateDiv(newTeam) {
         divs.push(divTemplate);
     }
     return divs.join(" ");
+}
+
+function insertDivs (divString) {
+    const fs = require('fs');
+    let html = fs.readFileSync("./src/index.html", "utf-8");
+    html = html.replace("replace-me", divString);
+    fs.writeFileSync('./dist/index.html', html);
 }
 
