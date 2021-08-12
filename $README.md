@@ -36,6 +36,8 @@ This project is not actively accepting contributions at this time.
 ## Tests
 Type "npm test" in the terminal and a series of tests will run.
 
+A video demo showing how to run the tests is linked here: https://drive.google.com/file/d/1cA6p94El7yW74zFyNMexeM6w2Lusk0VL/view
+
 ## Questions
 You can reach me with questions at rtc145@gmail.com or view my github page at https://github.com/Chillaroo.
     
